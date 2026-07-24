@@ -1,6 +1,6 @@
 # Brave Sync Server — Documentation
 
-This add-on runs [`sync-lite`](https://github.com/brave/go-sync/tree/master/sync-lite), a minimal, self-hosted implementation of the Brave Sync v2 protocol. It stores everything in a single SQLite file — no DynamoDB, no Redis, no external dependencies.
+This app runs sync-lite, a minimal, self-hosted implementation of the Brave Sync v2 protocol. It stores everything in a single SQLite file — no DynamoDB, no Redis, no external dependencies.
 
 ## What it does
 
