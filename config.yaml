@@ -1,0 +1,30 @@
+name: "Brave Sync Server"
+description: "Self-hosted Brave Sync server (sync-lite, SQLite-backed) for use with the Brave 'Override Brave Sync server URL' flag."
+version: "1.0.0"
+slug: "brave_sync_server"
+init: false
+arch:
+  - amd64
+startup: services
+boot: auto
+ports:
+  8295/tcp: 8295
+ports_description:
+  8295/tcp: "Brave Sync server (point Brave's sync-url override here)"
+map:
+  - type: data
+    read_only: false
+  - type: ssl
+    read_only: true
+options:
+  ssl: false
+  certfile: fullchain.pem
+  keyfile: privkey.pem
+  blocked_client_ids: ""
+  high_device_limit_client_ids: ""
+schema:
+  ssl: bool
+  certfile: str
+  keyfile: str
+  blocked_client_ids: str
+  high_device_limit_client_ids: str
