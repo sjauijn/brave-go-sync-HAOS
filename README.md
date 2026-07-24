@@ -6,6 +6,8 @@ I maintain this app, along with my other Home Assistant apps, solely for my own 
 
 Self-hosted [Brave Sync](https://github.com/brave/go-sync) server for your local network, built on the lightweight sync-lite implementation (SQLite storage, no DynamoDB/Redis required).
 
+Supports multiple fully isolated accounts (e.g. "User 1" / "User 2"), each running on its own port with its own database and clearly labeled log lines.
+
 ## Installation
 
 1. Click to add the stable repository:

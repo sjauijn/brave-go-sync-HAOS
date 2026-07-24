@@ -1,6 +1,6 @@
 name: "Brave Sync Server"
-description: "Self-hosted Brave Sync server (sync-lite, SQLite-backed) for use with the Brave 'Override Brave Sync server URL' flag."
-version: "1.0.0"
+description: "Self-hosted Brave Sync server for use with the Brave Browser"
+version: "2.0.0"
 slug: "brave_sync_server"
 init: false
 arch:
@@ -9,22 +9,42 @@ startup: services
 boot: auto
 ports:
   8295/tcp: 8295
+  8296/tcp: 8296
 ports_description:
-  8295/tcp: "Brave Sync server (point Brave's sync-url override here)"
+  8295/tcp: "Brave Sync server - Account 1 Port"
+  8296/tcp: "Brave Sync server - Account 2 Port"
 map:
   - type: data
     read_only: false
   - type: ssl
     read_only: true
 options:
-  ssl: false
-  certfile: fullchain.pem
-  keyfile: privkey.pem
-  blocked_client_ids: ""
-  high_device_limit_client_ids: ""
+  log_level: "info"
+  accounts:
+    - name: "User 1"
+      enabled: true
+      port: 8295
+      ssl: false
+      certfile: fullchain.pem
+      keyfile: privkey.pem
+      blocked_client_ids: ""
+      high_device_limit_client_ids: ""
+    - name: "User 2"
+      enabled: false
+      port: 8296
+      ssl: false
+      certfile: fullchain.pem
+      keyfile: privkey.pem
+      blocked_client_ids: ""
+      high_device_limit_client_ids: ""
 schema:
-  ssl: bool
-  certfile: str
-  keyfile: str
-  blocked_client_ids: str
-  high_device_limit_client_ids: str
+  log_level: "list(info|debug)"
+  accounts:
+    - name: "str"
+      enabled: "bool"
+      port: "port"
+      ssl: "bool"
+      certfile: "str"
+      keyfile: "str"
+      blocked_client_ids: "str"
+      high_device_limit_client_ids: "str"
