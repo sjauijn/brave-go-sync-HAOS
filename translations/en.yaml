@@ -1,0 +1,32 @@
+configuration:
+  log_level:
+    name: Log level
+    description: "info logs startup/shutdown and errors only. debug additionally logs every request with its client_id, method and path - useful for telling accounts apart in the logs or debugging sync issues."
+  accounts:
+    name: Accounts
+    description: One entry per independent Brave Sync account. Each enabled account runs as its own fully isolated server process with its own port and its own SQLite database file.
+    fields:
+      name:
+        name: Account name
+        description: Human-readable label for this account (e.g. "Personal", "Work"). Used to name the account's database file and to prefix its log lines, e.g. "[User 1] sync-lite listening on :8295 ...".
+      enabled:
+        name: Enabled
+        description: Whether this account's server process should be started.
+      port:
+        name: Port
+        description: TCP port this account's server listens on. Must be unique across accounts and match an entry in the add-on's "Network" (ports) configuration. Point Brave's #brave-override-sync-server-url flag at this port for this account.
+      ssl:
+        name: Enable SSL
+        description: Serve this account over HTTPS using the certificate/key below.
+      certfile:
+        name: Certificate file
+        description: Filename of the certificate inside /ssl, used only when SSL is enabled for this account.
+      keyfile:
+        name: Key file
+        description: Filename of the private key inside /ssl, used only when SSL is enabled for this account.
+      blocked_client_ids:
+        name: Blocked client IDs
+        description: Comma-separated list of client_id values to block for this account (their sync chain will be reported as disabled by admin).
+      high_device_limit_client_ids:
+        name: High device-limit client IDs
+        description: Comma-separated list of client_id values that get a raised device limit for this account.
